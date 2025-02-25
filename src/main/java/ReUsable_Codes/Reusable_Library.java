@@ -61,7 +61,7 @@ public static String Json_Extractor_Elements (String Path, String Body, String V
         String extractedValue = "";
 
         try {
-            JsonNode rootNode = objectMapper.readTree(new File("C:\\Users\\Shanmugasundharam\\Documents\\Selenium_Java_New_Framework\\src\\main\\resources\\Test_Data\\Data\\" + Path + ".json"));
+            JsonNode rootNode = objectMapper.readTree(new File("C:\\Users\\Shanmugasundharam\\Git\\S2_Application\\Selenium\\src\\main\\resources\\Test_Data\\Data\\" + Path + ".json"));
             JsonNode usersNode = rootNode.path(Body);
 
             for (JsonNode userNode : usersNode) {
@@ -104,7 +104,7 @@ public static void Click_Element(String Locator) {
 }
 
 public static void Explicit_Wait(String Locator) {
-    Wait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    Wait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Locator)));
     wait.until((ExpectedConditions.elementToBeClickable(By.xpath(Locator))));
 

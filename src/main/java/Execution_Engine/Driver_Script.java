@@ -2,6 +2,7 @@ package Execution_Engine;
 
 
 import Utilities.Excel_Utilities;
+import org.openqa.selenium.devtools.v129.network.model.CookiePriority;
 import org.testng.Reporter;
 import org.testng.annotations.*;
 import java.io.IOException;
@@ -46,13 +47,13 @@ public static void BeforeMethod(){
     Reporter.log("BeforeMethod", true);
 
     }
-@Test
+
+@Test(priority = 2)
 public static void Initalization() {
     Testcase_Validator();
-    Reporter.log("Test Case Executed", true);
+    Reporter.log("Test Case Executed1", true);
 
 }
-
 
 @AfterMethod
 public static void AfterMethod(){

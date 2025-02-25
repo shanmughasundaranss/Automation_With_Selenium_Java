@@ -2,10 +2,14 @@
   "Shot": [
     {
       "Manage_Work": "//a[@id='manage-work']//div//p[contains(text(),'Manage Work')]",
-      "shot": "//p[contains(text(),'Shot')]",
+      "Shot_Button": "//p[contains(text(),'Shot')]",
       "Fetch_Show_DropDown": "(//*[contains(@class,'MuiSvgIcon-root') and @data-testid='ExpandMoreIcon'])[2]",
       "Fetch_My_Show_Toggel": "(//*[contains(@class,'MuiButtonBase-root MuiSwitch-switchBase')])[2]",
-      "Fetch_Show_Search_Bar": "(//input[@placeholder='Search text...'])[1]"
+      "Fetch_Show_Search_Bar": "(//input[@placeholder='Search text...' and @id='search-bar'])[2]",
+      "Select_Show_Dropdown": "(//p[contains(text(),'SS1 Show')])[2]",
+      "Shot_Screen_Fetch": "(//p[contains(text(),'SS1 Show')])[2]"
+
+
 
 
 

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestNG Testcase Runner Suite">
+    <listeners>
+        <listener class-name="Listners.Test_Listners"/>
+    </listeners>
+    <test verbose="2" preserve-order="true" name="C:/Users/Shanmugasundharam/Git/S2_Application/Selenium/src/main/java/Execution_Engine/TestNG_Run.java">
+        <classes>
+            <class name="Execution_Engine.TestNG_Run">
+            </class>
+        </classes>
+    </test>
+</suite>
