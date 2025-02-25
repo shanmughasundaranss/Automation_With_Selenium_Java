@@ -7,7 +7,6 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,8 +16,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static Browser_Factory.Browser_Drivers.driver;
+import static ReUsable_Codes.Reusable_Library.Get_Value_From_Property_File;
+
 
 public class Test_Listners implements ITestListener {
+
+    public static   String screenshotDir;
 
     @Override
     public void onTestStart(ITestResult result) {
@@ -63,23 +66,29 @@ public class Test_Listners implements ITestListener {
     }
 
     private void deleteOldScreenshots() {
-        String screenshotDir = "C:\\Users\\Shanmugasundharam\\Git\\S2_Application\\Selenium\\test-output\\ScreenShot";
-        String todayDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-        File directory = new File(screenshotDir);
-        if (directory.exists()) {
-            File[] files = directory.listFiles((dir, name) -> name.endsWith(".png") && !name.contains(todayDate));
-            if (files != null) {
-                for (File file : files) {
-                    if (file.delete()) {
-                        Reporter.log("Deleted old screenshot: " + file.getName(), true);
-                    } else {
-                        Reporter.log("Failed to delete old screenshot: " + file.getName(), true);
+
+        try {
+             screenshotDir = Get_Value_From_Property_File("Screen_Shot_Folder_Location");
+            String todayDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+            File directory = new File(screenshotDir);
+
+            if (directory.exists()) {
+                File[] files = directory.listFiles((dir, name) -> name.endsWith(".png") && !name.contains(todayDate));
+                if (files != null) {
+                    for (File file : files) {
+                        if (file.delete()) {
+                            Reporter.log("Deleted old screenshot: " + file.getName(), true);
+                        } else {
+                            Reporter.log("Failed to delete old screenshot: " + file.getName(), true);
+                        }
                     }
                 }
             }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
-
     private void takeScreenshot(String testName) {
         Reporter.log("Attempting to take screenshot for test: " + testName, true);
         if (driver == null) {
@@ -87,9 +96,7 @@ public class Test_Listners implements ITestListener {
             return;
         }
 
-        // Ensure the directory exists
-        
-        String screenshotDir = "C:\\Users\\Shanmugasundharam\\Git\\S2_Application\\Selenium\\test-output\\ScreenShot";
+
         try {
             Files.createDirectories(Paths.get(screenshotDir));
         } catch (IOException e) {
