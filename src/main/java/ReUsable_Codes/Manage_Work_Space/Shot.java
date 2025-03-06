@@ -7,11 +7,11 @@ public class Shot {
 
     public static void Fetch_Show() {
 
-        Click_Element(Json_Extractor_Elements("Manage_Work_Shots", "Shot", "Manage_Work"));
+        Click_Element(Json_Extractor_Elements("Manage_Work_Shot", "Shot", "Manage_Work"));
 
         Explicit_Wait(Json_Extractor_Elements("Manage_Work_Shot", "Shot", "Fetch_Show_DropDown"));
 
-        Click_Element(Json_Extractor_Elements("Manage_Work_Shot", "Shot", "Fetch_Show_DropDown"));
+        Click_Element(Json_Extractor_Elements("Manage_Work_Shot", "Shot", "FFetch_Show_DropDown"));
         Explicit_Wait(Json_Extractor_Elements("Manage_Work_Shot", "Shot", "Fetch_My_Show_Toggel"));
 
         Click_Element(Json_Extractor_Elements("Manage_Work_Shot", "Shot", "Fetch_My_Show_Toggel"));

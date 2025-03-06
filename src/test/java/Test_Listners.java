@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static Browser_Factory.Browser_Drivers.driver;
-
+import static ReUsable_Codes.Reusable_Library.Get_Value_From_Property_File;
 
 
 public class Test_Listners implements ITestListener {
@@ -62,7 +62,13 @@ public class Test_Listners implements ITestListener {
     }
 
     private void deleteScreenshotFolder() {
-        String screenshotDir = "C:\\Users\\Shanmugasundharam\\Git\\S2_Application\\Selenium\\test-output\\ScreenShot";
+        String screenshotDir = null;
+        try {
+            screenshotDir = Get_Value_From_Property_File("Screen_Shot_Folder_Location");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         try {
             File directory = new File(screenshotDir);
             if (directory.exists()) {
@@ -84,7 +90,12 @@ public class Test_Listners implements ITestListener {
         }
 
         // Ensure the directory exists
-        String screenshotDir = "C:\\Users\\Shanmugasundharam\\Git\\S2_Application\\Selenium\\test-output\\ScreenShot";
+        String screenshotDir = null;
+        try {
+            screenshotDir = Get_Value_From_Property_File("Screen_Shot_Folder_Location");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         try {
             Files.createDirectories(Paths.get(screenshotDir));
         } catch (IOException e) {
@@ -110,6 +121,5 @@ public class Test_Listners implements ITestListener {
         } catch (IOException e) {
             Reporter.log("Failed to save screenshot: " + e.getMessage(), true);
         }
-
     }
 }

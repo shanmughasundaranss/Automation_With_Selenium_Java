@@ -89,7 +89,8 @@ public class Test_Listners implements ITestListener {
             throw new RuntimeException(e);
         }
     }
-    private void takeScreenshot(String testName) {
+    private void
+    takeScreenshot(String testName) {
         Reporter.log("Attempting to take screenshot for test: " + testName, true);
         if (driver == null) {
             Reporter.log("WebDriver not initialized", true);

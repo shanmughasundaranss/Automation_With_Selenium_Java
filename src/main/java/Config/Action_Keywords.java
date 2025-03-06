@@ -1,9 +1,12 @@
 package Config;
 
+import Listners.Test_Listners;
 import Testcase.S2_Login;
+import org.testng.annotations.Listeners;
+
 import java.io.IOException;
 import static Testcase.Create_New_Service_From_Shots.Create_New_Shot_From_Manage_Work_Shot_Screen;
-
+@Listeners(Test_Listners.class)
 public class Action_Keywords {
 
     public static void TestSuite1()  {
@@ -15,7 +18,8 @@ public class Action_Keywords {
 
     }
 
-    public static void TestSuite2() {
+
+public static void TestSuite2() {
 
         try {
             Create_New_Shot_From_Manage_Work_Shot_Screen();

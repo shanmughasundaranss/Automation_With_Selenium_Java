@@ -1,6 +1,7 @@
 package Execution_Engine;
 
 import Listners.RetryAnalyzer;
+import Listners.Test_Listners;
 import Utilities.Excel_Utilities;
 import org.testng.Reporter;
 import org.testng.annotations.*;
@@ -10,6 +11,7 @@ import java.util.List;
 import static Config.Action_Keywords.TestSuite1;
 import static Config.Action_Keywords.TestSuite2;
 
+@Listeners(Test_Listners.class)
 public class TestNG_Run extends Excel_Utilities {
 
     public static List<String> Return_value_of_Test_case_Name;
