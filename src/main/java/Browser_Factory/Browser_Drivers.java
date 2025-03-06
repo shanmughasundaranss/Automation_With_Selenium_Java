@@ -1,23 +1,13 @@
 package Browser_Factory;
 
 
-
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.io.FileHandler;
-import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
 import org.testng.Reporter;
-import org.testng.annotations.Listeners;
-
-import java.io.File;
 import java.io.IOException;
 import static ReUsable_Codes.Reusable_Library.Get_Value_From_Property_File;
 

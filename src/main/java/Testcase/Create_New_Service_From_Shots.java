@@ -3,9 +3,7 @@ package Testcase;
 import ReUsable_Codes.Login;
 import ReUsable_Codes.Manage_Work_Space.Shot;
 import org.testng.Reporter;
-
 import java.io.IOException;
-
 import static Browser_Factory.Browser_Drivers.Initailize_Driver;
 import static Browser_Factory.Browser_Drivers.driver;
 

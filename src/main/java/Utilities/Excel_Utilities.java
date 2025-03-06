@@ -22,14 +22,14 @@ public class Excel_Utilities {
     public static String Trimmed_Action_Keyword_Method_Name;
 
 
-    public static void setExcelFile(String path) throws IOException {
+public static void setExcelFile(String path) throws IOException {
 
         FileInputStream fs = new FileInputStream(path);
         workbook = new XSSFWorkbook(fs);
 
     }
 
-    public static void Excel_Testcases() throws IOException {
+public static void Excel_Testcases() throws IOException {
         String Get_Driver_File_Path = Reusable_Library.Get_Value_From_Property_File("Exection_Sheet_Location");
         Excel_Utilities.setExcelFile(Get_Driver_File_Path);
         sheet = workbook.getSheet(Sheet_Name);
@@ -47,7 +47,7 @@ public class Excel_Utilities {
         }
     }
 
-    public static void ActionKeyword_Test_Cases() {
+public static void ActionKeyword_Test_Cases() {
         try {
             Class<?> clazz = Action_Keywords.class;
             Method[] methods = clazz.getDeclaredMethods();
@@ -66,7 +66,7 @@ public class Excel_Utilities {
         }
     }
 
-    public static void Testcase_Validator() {
+public static void Testcase_Validator() {
         boolean methodExecuted = false;
 
         Method[] methods = Action_Keywords.class.getMethods();

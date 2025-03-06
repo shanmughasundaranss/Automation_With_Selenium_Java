@@ -9,10 +9,6 @@
       "Select_Show_Dropdown": "(//p[contains(text(),'SS1 Show')])[2]",
       "Shot_Screen_Fetch": "(//p[contains(text(),'SS1 Show')])[2]"
 
-
-
-
-
     }
   ]
 }

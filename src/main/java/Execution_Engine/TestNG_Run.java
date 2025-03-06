@@ -20,66 +20,63 @@ public class TestNG_Run extends Excel_Utilities {
 
 
 
-    @BeforeSuite
-    public static void BeforeSuite() throws IOException {
+@BeforeSuite
+public static void BeforeSuite() throws IOException {
         Reporter.log("BeforeSuite", true);
 
 
     }
-    @BeforeTest
-    public static void BeforeTest() throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+@BeforeTest
+public static void BeforeTest() throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         Reporter.log("BeforeTest", true);
-        //Excel_Testcases();
-
-
 
 
     }
-    @BeforeClass
-    public static void BeforeClass(){
+@BeforeClass
+public static void BeforeClass(){
 
         Reporter.log("BeforeClass", true);
 
     }
 
-    @BeforeMethod
-    public static void BeforeMethod(){
+@BeforeMethod
+public static void BeforeMethod(){
         Reporter.log("BeforeMethod", true);
 
     }
 @Test(priority = 1, retryAnalyzer = RetryAnalyzer.class)
-    public static void TestCase1() {
+public static void TestCase1() {
         TestSuite1();
         Reporter.log("Test Case Executed 1", true);
 
     }
 
-    @Test(priority = 2, retryAnalyzer = RetryAnalyzer.class)
-    public static void TestCase2() {
+@Test(priority = 2, retryAnalyzer = RetryAnalyzer.class)
+public static void TestCase2() {
         TestSuite2();
         Reporter.log("Test Case Executed 2", true);
 
     }
 
-    @AfterMethod
-    public static void AfterMethod(){
+@AfterMethod
+public static void AfterMethod(){
         Reporter.log("AfterMethod", true);
 
     }
 
-    @AfterClass
-    public static void AfterClass(){
+@AfterClass
+public static void AfterClass(){
         Reporter.log("AfterClass", true);
 
     }
-    @AfterTest
-    public static void AfterTest(){
-        Reporter.log("AfterTest", true);
+@AfterTest
+public static void AfterTest(){
+
+    Reporter.log("AfterTest", true);
     }
 
-    @AfterSuite
-    public static void AfterSuite(){
-
+@AfterSuite
+public static void AfterSuite(){
         Reporter.log("AfterSuite", true);
 
     }
