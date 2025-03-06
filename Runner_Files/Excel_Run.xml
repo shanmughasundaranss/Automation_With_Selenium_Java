@@ -1,4 +1,5 @@
-<suite name="Test_NG Testcase Runner Suite" verbose="2">
+
+<suite name="Excel Testcase Runner Suite" verbose="2">
     <listeners>
         <listener class-name="org.testng.reporters.EmailableReporter"/>
         <listener class-name="org.uncommons.reportng.HTMLReporter"/>
@@ -7,7 +8,7 @@
     </listeners>
     <test verbose="2" preserve-order="true" name="C:/Users/Shanmugasundharam/Git/S2_Application/Selenium/src/main/java/Execution_Engine/Driver_Script.java">
         <classes>
-            <class name="Execution_Engine.TestNG_Run"/>
+            <class name="Execution_Engine.Driver_Script"/>
         </classes>
     </test>
 </suite>

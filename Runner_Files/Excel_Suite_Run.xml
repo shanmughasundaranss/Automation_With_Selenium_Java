@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Excel Testcase Runner Suite">
+<suite name="Excel Testcase Runner Suite" verbose="2">
     <listeners>
         <listener class-name="Listners.Test_Listners"/>
+        
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        <listener class-name="Listners.Test_Listners"/>
+        <listener class-name="org.testng.reporters.EmailableReporter"/>
     </listeners>
     <test verbose="2" preserve-order="true" name="C:/Users/Shanmugasundharam/Git/S2_Application/Selenium/src/main/java/Execution_Engine/Driver_Script.java">
         <classes>
@@ -10,4 +15,5 @@
             </class>
         </classes>
     </test>
+
 </suite>

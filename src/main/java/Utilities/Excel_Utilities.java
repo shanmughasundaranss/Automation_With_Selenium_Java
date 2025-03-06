@@ -9,6 +9,8 @@ import Config.Action_Keywords;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import ReUsable_Codes.Reusable_Library;
+import org.testng.Assert;
+import org.testng.Reporter;
 
 public class Excel_Utilities {
     private static XSSFWorkbook workbook;
@@ -20,14 +22,14 @@ public class Excel_Utilities {
     public static String Trimmed_Action_Keyword_Method_Name;
 
 
-public static void setExcelFile(String path) throws IOException {
+    public static void setExcelFile(String path) throws IOException {
 
         FileInputStream fs = new FileInputStream(path);
         workbook = new XSSFWorkbook(fs);
 
     }
 
-public static void Excel_Testcases() throws IOException{
+    public static void Excel_Testcases() throws IOException {
         String Get_Driver_File_Path = Reusable_Library.Get_Value_From_Property_File("Exection_Sheet_Location");
         Excel_Utilities.setExcelFile(Get_Driver_File_Path);
         sheet = workbook.getSheet(Sheet_Name);
@@ -45,7 +47,7 @@ public static void Excel_Testcases() throws IOException{
         }
     }
 
-public static void ActionKeyword_Test_Cases() {
+    public static void ActionKeyword_Test_Cases() {
         try {
             Class<?> clazz = Action_Keywords.class;
             Method[] methods = clazz.getDeclaredMethods();
@@ -56,7 +58,7 @@ public static void ActionKeyword_Test_Cases() {
             for (int i = 0; i < methods.length; i++) {
                 String Listofmethods = methods[i].toString();
                 String Trim_Class_Name = Listofmethods.replace("public static void Config.Action_Keywords.", "").trim();
-             //   System.out.println("Method Name Before Adding to List: " + Trim_Class_Name);
+                //   System.out.println("Method Name Before Adding to List: " + Trim_Class_Name);
                 Get_Testcases_From_ActionKeyword.add(Trim_Class_Name);
             }
         } catch (Throwable e) {
@@ -64,46 +66,33 @@ public static void ActionKeyword_Test_Cases() {
         }
     }
 
-public static void Testcase_Validator() {
+    public static void Testcase_Validator() {
+        boolean methodExecuted = false;
 
         Method[] methods = Action_Keywords.class.getMethods();
-        for (Method m : methods) {
-          //  System.out.println("Available method: " + m.getName());
-
-        }
-        if (Get_Testcases_From_ActionKeyword != null) {
-                        for (String Excel_Values : Get_Testcases_From_Excel) {
-                            if (Excel_Values != null) {
-                                System.out.println("Finaly Value of Excel Testcase:" + Excel_Values);
-                                // Trim "()"
-                                Trimmed_Excel_Testcases_Name = Excel_Values.trim().replace("()", "");
-                                // Check if the method exists in Action_Keywords class
-                                if (Get_Testcases_From_ActionKeyword.contains(Excel_Values)) {
-                                   // System.out.println("Value " + Excel_Values + " from Column_Values1 is present in aList.");
-
-                                    try {
-                                        Method method = Action_Keywords.class.getMethod(Trimmed_Excel_Testcases_Name); // Get the method by name
-                                        System.out.println("Check: " + method);
-                                        method.invoke(null); // 'null' because it's a static method
-
-                                    } catch (NoSuchMethodException e) {
-                                        System.err.println("No such method: " + Trimmed_Excel_Testcases_Name + " in Action_Keywords.");
-                                    } catch (IllegalAccessException e) {
-                                        System.err.println("Illegal access to method: " + Trimmed_Excel_Testcases_Name + " in Action_Keywords.");
-                                    } catch (InvocationTargetException e) {
-                                        if (e.getCause() instanceof IOException) {
-                                            System.err.println("IOException occurred while invoking method " + Trimmed_Excel_Testcases_Name + ": " + e.getCause());
-                                        } else {
-                                            System.err.println("Error invoking method " + Trimmed_Excel_Testcases_Name + ": " + e.getCause());
-                                        }
-                                    }
-                                } else {
-                                    System.out.println("Value " + Trimmed_Excel_Testcases_Name + " from Column_Values1 is NOT present in aList.");
-                                }
-                            } else {
-                                System.out.println("Value is null and cannot be processed.");
-                            }
-                        }
+        for (String Excel_Values : Get_Testcases_From_Excel) {
+            Reporter.log("Loop Started", true);
+            if (Excel_Values != null) {
+                String Trimmed_Excel_Testcases_Name = Excel_Values.trim().replace("()", "");
+                if (Get_Testcases_From_ActionKeyword.contains(Excel_Values)) {
+                    try {
+                        Method method = Action_Keywords.class.getMethod(Trimmed_Excel_Testcases_Name);
+                        method.invoke(null);
+                        methodExecuted = true;
+                    } catch (NoSuchMethodException e) {
+                        Reporter.log("No such method: " + Trimmed_Excel_Testcases_Name, true);
+                    } catch (Exception e) {
+                        Reporter.log("Error executing method: " + Trimmed_Excel_Testcases_Name + " - " + e.getMessage(), true);
+                       Assert.fail("Test case failed: " + e.getMessage()); // This marks test as failed
                     }
+                } else {
+                    Reporter.log("Test case not found in Action_Keywords: " + Trimmed_Excel_Testcases_Name, true);
                 }
             }
+        }
+
+        if (!methodExecuted) {
+            Assert.fail("No test cases were executed.");
+        }
+    }
+}
